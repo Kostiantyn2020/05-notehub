@@ -26,7 +26,8 @@ export default function App() {
         perPage: 12,
         search: debouncedSearch || undefined,
       }),
-    placeholderData: (previousData) => previousData,
+    staleTime: 60_000,
+    retry: 1,
   });
 
   return (
