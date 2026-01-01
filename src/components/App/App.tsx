@@ -18,6 +18,11 @@ export default function App() {
 
   const [debouncedSearch] = useDebounce(search, 500);
 
+  const handleSearchChange = (value: string) => {
+    setSearch(value);
+    setPage(1); 
+  };
+  
   const { data, isLoading, isError } = useQuery({
     queryKey: ["notes", page, debouncedSearch],
     queryFn: () =>
@@ -33,7 +38,7 @@ export default function App() {
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
-        <SearchBox value={search} onChange={setSearch} />
+        <SearchBox value={search} onChange={handleSearchChange} />
 
         {data && data.totalPages > 1 && (
           <Pagination
